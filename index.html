@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LifeDrop — Blood Bank Management</title>
+<meta name="description" content="LifeDrop helps donors, hospitals, and administrators manage blood donation, inventory, and requests in one place." />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="#home" class="brand">
+      <span class="drop">🩸</span> LifeDrop
+    </a>
+    <nav>
+      <ul class="menu">
+        <li><a href="#home" data-nav>Home</a></li>
+        <li><a href="#search" data-nav>Search Blood</a></li>
+        <li><a href="#donor" data-nav>Become a Donor</a></li>
+        <li><a href="#request" data-nav>Request Blood</a></li>
+        <li><a href="#admin" data-nav>Admin</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Every drop saves a life</span>
+        <h1>Connecting <span class="accent">Donors</span> with those who need it most.</h1>
+        <p>LifeDrop is a modern blood bank management platform. Register as a donor, check live inventory, and submit requests — all in one place.</p>
+        <div class="cta-row">
+          <a href="#donor" class="btn btn-primary">Become a Donor</a>
+          <a href="#request" class="btn btn-outline">Request Blood</a>
+        </div>
+        <div class="stats">
+          <div><strong id="stat-donors">0</strong><span>Registered Donors</span></div>
+          <div><strong id="stat-units">0</strong><span>Units in Stock</span></div>
+          <div><strong id="stat-requests">0</strong><span>Requests Served</span></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Live Blood Inventory</h3>
+        <div id="inventory-grid" class="inventory-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section id="search" class="section alt">
+    <div class="container">
+      <h2>Search Available Blood</h2>
+      <p class="lead">Find nearby availability by blood group and city.</p>
+      <form id="search-form" class="form-row">
+        <select name="group" required>
+          <option value="">Blood Group</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>AB+</option><option>AB-</option>
+          <option>O+</option><option>O-</option>
+        </select>
+        <input type="text" name="city" placeholder="City (optional)" />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+      <div id="search-results" class="results"></div>
+    </div>
+  </section>
+
+  <!-- DONOR -->
+  <section id="donor" class="section">
+    <div class="container two-col">
+      <div>
+        <h2>Register as a Donor</h2>
+        <p class="lead">Join a community of heroes. Your donation can save up to three lives.</p>
+        <ul class="checklist">
+          <li>Age between 18 and 65</li>
+          <li>Weight above 50kg</li>
+          <li>Healthy with no recent illness</li>
+          <li>At least 3 months since last donation</li>
+        </ul>
+      </div>
+      <form id="donor-form" class="card-form">
+        <h3>Donor Registration</h3>
+        <div class="grid-2">
+          <label>Full Name<input name="name" required /></label>
+          <label>Age<input type="number" name="age" min="18" max="65" required /></label>
+          <label>Blood Group
+            <select name="group" required>
+              <option value="">Select</option>
+              <option>A+</option><option>A-</option>
+              <option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option>
+              <option>O+</option><option>O-</option>
+            </select>
+          </label>
+          <label>Phone<input name="phone" required /></label>
+          <label class="full">City<input name="city" required /></label>
+          <label class="full">Email<input type="email" name="email" required /></label>
+        </div>
+        <button class="btn btn-primary" type="submit">Register Now</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- REQUEST -->
+  <section id="request" class="section alt">
+    <div class="container two-col reverse">
+      <form id="request-form" class="card-form">
+        <h3>Submit a Blood Request</h3>
+        <div class="grid-2">
+          <label>Patient Name<input name="patient" required /></label>
+          <label>Blood Group
+            <select name="group" required>
+              <option value="">Select</option>
+              <option>A+</option><option>A-</option>
+              <option>B+</option><option>B-</option>
+              <option>AB+</option><option>AB-</option>
+              <option>O+</option><option>O-</option>
+            </select>
+          </label>
+          <label>Units<input type="number" name="units" min="1" required /></label>
+          <label>Urgency
+            <select name="urgency" required>
+              <option>Normal</option><option>Urgent</option><option>Critical</option>
+            </select>
+          </label>
+          <label class="full">Hospital<input name="hospital" required /></label>
+          <label class="full">Contact Phone<input name="phone" required /></label>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit Request</button>
+      </form>
+      <div>
+        <h2>Need Blood Urgently?</h2>
+        <p class="lead">Send a request and we'll match it against live inventory and nearby donors instantly.</p>
+        <ul class="checklist">
+          <li>Real-time matching with available stock</li>
+          <li>Alerts sent to compatible donors</li>
+          <li>Admin verifies and confirms each request</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN -->
+  <section id="admin" class="section">
+    <div class="container">
+      <h2>Admin Dashboard</h2>
+      <p class="lead">Manage donors, inventory, and pending requests.</p>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="donors">Donors</button>
+        <button class="tab" data-tab="inventory">Inventory</button>
+        <button class="tab" data-tab="requests">Requests</button>
+      </div>
+
+      <div id="tab-donors" class="tab-panel active">
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Group</th><th>City</th><th>Phone</th><th>Action</th></tr></thead>
+          <tbody id="donors-body"></tbody>
+        </table>
+      </div>
+
+      <div id="tab-inventory" class="tab-panel">
+        <table class="data-table">
+          <thead><tr><th>Blood Group</th><th>Units</th><th>Adjust</th></tr></thead>
+          <tbody id="inventory-body"></tbody>
+        </table>
+      </div>
+
+      <div id="tab-requests" class="tab-panel">
+        <table class="data-table">
+          <thead><tr><th>Patient</th><th>Group</th><th>Units</th><th>Hospital</th><th>Urgency</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="requests-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container foot">
+    <div>
+      <div class="brand">🩸 LifeDrop</div>
+      <p>Bridging donors and recipients — one drop at a time.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>hello@lifedrop.example<br/>+1 (555) 010-2040</p>
+    </div>
+    <div>
+      <h4>Emergency</h4>
+      <p>24/7 Helpline: <strong>1-800-BLOOD</strong></p>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> LifeDrop Blood Bank Management</div>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
